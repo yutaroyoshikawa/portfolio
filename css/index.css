@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: #8aa4cd; }
+  body nav {
+    z-index: 14;
+    width: 100%;
+    height: 180px;
+    position: absolute;
+    top: 0;
+    background-color: white;
+    filter: drop-shadow(0px 0px 20px black); }
+    body nav ul li {
+      font-family: 'hannari';
+      list-style: none;
+      font-size: 50px;
+      float: left;
+      padding: 60px; }
+  body #menu-button {
+    position: fixed;
+    z-index: 15;
+    top: 3vw;
+    left: 4vw;
+    width: 5vw;
+    height: 5vw;
+    cursor: pointer; }
+    body #menu-button .bar {
+      position: relative;
+      border-top: 0.3vw solid #fed1e5; }
+    body #menu-button #second-bar {
+      transform: translateY(1.25vw); }
+    body #menu-button #third-bar {
+      transform: translateY(2.5vw); }
+  body #back-button {
+    position: fixed;
+    top: 3vw;
+    z-index: 15;
+    left: 91vw;
+    width: 5vw;
+    height: 5vw;
+    display: none;
+    opacity: 0;
+    cursor: pointer; }
+    body #back-button .bar {
+      position: relative;
+      border-top: 0.3vw solid white; }
+    body #back-button #first-back {
+      transform: rotate(45deg) translateY(1.2vw) translateX(1.1vw); }
+    body #back-button #second-back {
+      transform: rotate(-45deg) translateY(0.8vw) translateX(-1.1vw); }
+  body #concept-wrapper {
+    position: absolute;
+    width: 420px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    margin-left: -183px;
+    margin-top: -290px;
+    font-size: 2.5vw;
+    color: #fed1e5; }
+    body #concept-wrapper h2 {
+      font-weight: 100;
+      font-family: 'Noto Sans Japanese';
+      letter-spacing: 20px; }
+    body #concept-wrapper #first-by {
+      width: 100px;
+      height: 100px;
+      margin: 20px 0; }
+      body #concept-wrapper #first-by .by {
+        width: 100%;
+        height: 4px;
+        position: relative;
+        border-top: 4px solid #898989; }
+      body #concept-wrapper #first-by #first-by-first {
+        transform: rotate(45deg) translateX(36px) translateY(36px); }
+      body #concept-wrapper #first-by #first-by-second {
+        transform: rotate(-45deg) translateX(-30px) translateY(32px); }
+    body #concept-wrapper #second-by {
+      width: 100px;
+      height: 100px;
+      margin: 20px 0; }
+      body #concept-wrapper #second-by .by {
+        width: 100%;
+        height: 4px;
+        position: relative;
+        border-top: 4px solid #898989; }
+      body #concept-wrapper #second-by #second-by-first {
+        transform: rotate(45deg) translateX(36px) translateY(36px); }
+      body #concept-wrapper #second-by #second-by-second {
+        transform: rotate(-45deg) translateX(-30px) translateY(32px); }
+  body #content-wrapper {
+    display: none;
+    word-wrap: break-word;
+    position: absolute;
+    top: 0;
+    z-index: 12;
+    opacity: 0;
+    width: 100%;
+    color: #FFF; }
+    body #content-wrapper #image-mask {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 13;
+      background: linear-gradient(#fdaca7, rgba(253, 172, 167, 0.7)); }
+    body #content-wrapper img {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 12; }
+    body #content-wrapper #top-color {
+      margin-top: 600px;
+      position: absolute;
+      top: 0;
+      z-index: 13;
+      width: 100%;
+      height: 600px;
+      background: linear-gradient(rgba(250, 123, 104, 0), #102745); }
+    body #content-wrapper #content-color {
+      margin-top: 1200px;
+      position: absolute;
+      top: 0;
+      z-index: 13;
+      width: 100%;
+      background: #102745; }
+    body #content-wrapper #inner-wrapper {
+      width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 14; }
+      body #content-wrapper #inner-wrapper #article-image {
+        width: 1920px;
+        position: absolute;
+        top: 0;
+        z-index: 14; }
+      body #content-wrapper #inner-wrapper #article-title .titles {
+        float: left; }
+      body #content-wrapper #inner-wrapper #article-title h2 {
+        font-family: 'Braggadocio';
+        width: 500px;
+        font-size: 80px; }
+      body #content-wrapper #inner-wrapper #article-title #work-name {
+        margin-left: 200px; }
+      body #content-wrapper #inner-wrapper #article-sent {
+        line-height: 35px;
+        letter-spacing: 4px;
+        color: #DDD;
+        font-size: 20px;
+        clear: left;
+        width: 800px;
+        margin: 0 auto;
+        padding-top: 400px; }
+    body #content-wrapper #bottom-wrapper {
+      margin-top: 73px;
+      color: #aaa;
+      font-size: 25px;
+      background-color: #fff;
+      padding: 50px;
+      text-align: center; }
+
+/*# sourceMappingURL=index.css.map */
