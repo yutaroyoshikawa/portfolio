@@ -1,8 +1,9 @@
 {
+  "license": "MIT",
   "scripts": {
-    "build": "next build",
-    "dev": "next",
-    "now-build": "next build"
+    "build": "tsc -p tsconfig.json && next build",
+    "dev": "tsc -p tsconfig.json && next",
+    "deploy": "now && firebase deploy"
   },
   "dependencies": {
     "firebase": "^5.9.1",
@@ -30,6 +31,7 @@
     "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^4.1.12",
     "@zeit/next-typescript": "^1.1.1",
+    "dotenv": "^7.0.0",
     "tslint": "^5.14.0",
     "typescript": "^3.3.4000"
   }
