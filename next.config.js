@@ -1,2 +1,6 @@
-const withTypescript = require('@zeit/next-typescript')
-module.exports = withTypescript()
+const withTypescript = require("@zeit/next-typescript");
+
+module.exports = withTypescript({
+  target: 'serverless',
+  poweredByHeader: false
+})

@@ -1,13 +1,36 @@
-import * as React from 'react'
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import { Component } from "react";
+import Link from "next/link";
+import Header from "../components/header";
 
-const AboutPage: React.FunctionComponent = () => (
-  <Layout title="About | Next.js + TypeScript Example">
-    <h1>About</h1>
-    <p>This is the about page</p>
-    <p><Link href='/'><a>Go home</a></Link></p>
-  </Layout>
-)
+interface IProps {
+  isServer: string
+}
+
+class AboutPage extends Component<IProps> {
+  static getInitialProps() {
+    const isServer = typeof window === "undefined";
+    return { isServer };
+  }
+
+  render() {
+    return (
+      <main>
+        <Header />
+        <section>
+          <p>
+            This is another page of the SSR example, you accessed it{" "}
+            <strong>{this.props.isServer ? "server" : "client"} side</strong>.
+          </p>
+          <p>
+            You can reload to see how the page change.
+          </p>
+          <Link href="/">
+            <a>Go to Home</a>
+          </Link>
+        </section>
+      </main>
+    );
+  }
+}
 
 export default AboutPage;
