@@ -1,8 +1,0 @@
-{
-    "version": 2,
-    "name": "portfolio",
-    "builds": [
-        { "src": "package.json", "use": "@now/next" }
-    ],
-    "alias": ["yutaro-yoshikawa.tokyo", "www.yutaro-yoshikawa.tokyo"]
-}
