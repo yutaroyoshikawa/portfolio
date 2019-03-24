@@ -1,15 +1,18 @@
 import Link from 'next/link'
 import Header from '../src/components/header'
+import * as Styled from '../src/styles/index'
 
 function Index() {
   return (
     <main>
-      <Header />
-      <section>
-        <Link href="/about">
-          <a>Go to About Me</a>
-        </Link>
-      </section>
+      <Styled.Entire>
+        <Header />
+        <section>
+          <Link href="/about">
+            <a>Go to About Me</a>
+          </Link>
+        </section>
+      </Styled.Entire>
     </main>
   );
 }

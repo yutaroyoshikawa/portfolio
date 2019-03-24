@@ -4,23 +4,25 @@ import createSagaMiddleware from 'redux-saga'
 import reducers from './reducers'
 import rootSaga from './sagas'
 
-const composeEnhancers = composeWithDevTools({})
-const sagaMiddleware = createSagaMiddleware({})
+const sagaMiddleware = createSagaMiddleware()
 
 export const buildStore = () => {
-  const store = 
-    process.env.NODE_ENV === 'production' ?  
-    createStore(
-      reducers,
-      applyMiddleware(sagaMiddleware)
-    )
-    :
-    createStore(
-      reducers,
-      composeEnhancers(applyMiddleware(sagaMiddleware))
-    )
+  const store: any =
+    process.env.NODE_ENV === 'production' ?
+      createStore(
+        reducers,
+        applyMiddleware(sagaMiddleware)
+      )
+      :
+      createStore(
+        reducers,
+        composeWithDevTools(applyMiddleware(sagaMiddleware))
+      )
 
-    sagaMiddleware.run(rootSaga)
+  store.runSagaTask = () => {
+    store.sagaTask = sagaMiddleware.run(rootSaga)
+  };
+  store.runSagaTask()
 
-    return store
+  return store
 }
