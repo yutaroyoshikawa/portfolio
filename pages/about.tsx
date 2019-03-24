@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import Link from 'next/link'
 import Header from '../src/components/header'
+import Head from '../src/components/head'
 
 interface IProps {
   isServer: string
@@ -15,6 +16,13 @@ class AboutPage extends Component<IProps> {
   render() {
     return (
       <main>
+        <Head
+          title="about"
+          description="about"
+          keyword=""
+          image=""
+          url=""
+        />
         <Header />
         <section>
           <p>
