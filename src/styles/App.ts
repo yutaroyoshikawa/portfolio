@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const Global = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC|Raleway|Cantata+One');
+
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
@@ -21,7 +23,15 @@ time, mark, audio, video {
     vertical-align:baseline;
     background:transparent;
     font-weight: normal;
-    color: #FFF;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
 }
 
 body {

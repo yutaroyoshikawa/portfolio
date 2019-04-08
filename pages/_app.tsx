@@ -1,11 +1,28 @@
 import React from 'react'
 import App, { AppComponentProps, Container } from 'next/app'
-import { Provider } from 'react-redux'
+import { StoreContext } from 'redux-react-hook'
 import { Store } from 'redux'
 import { Global } from '../src/styles/App'
 import { buildStore } from '../src/store'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
+import { MenuOutPuts } from '../src/components'
+import { ApolloProvider } from 'react-apollo'
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+
+const isBrowser = typeof window !== 'undefined'
+
+if(!isBrowser) {
+  require('isomorphic-fetch')
+}
+
+const client = new ApolloClient({
+  ssrMode: true,
+  link: new HttpLink({uri: 'https://us-central1-portforlio-a9f8c.cloudfunctions.net/apollo'}),
+  cache: new InMemoryCache(),
+})
 
 const configureStore = buildStore()
 
@@ -35,9 +52,12 @@ class MyApp extends App<IProps> {
     return(
       <Container>
         <Global />
-        <Provider store={store}>
-          <Component {...pageProps} />
-        </Provider>
+        <ApolloProvider client={client}>
+          <StoreContext.Provider value={store}>
+            <MenuOutPuts />
+            <Component {...pageProps} />
+          </StoreContext.Provider>
+        </ApolloProvider>
       </Container>
     )
   }
