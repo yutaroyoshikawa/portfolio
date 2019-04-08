@@ -1,36 +1,102 @@
-import { Component } from 'react'
-import Link from 'next/link'
-import Header from '../src/components/header'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import * as Styled from '../src/styles/about'
+import { SlideInType, AboutMenu } from '../src/components'
+import { IAboutMenuState } from '../src/reducers/aboutMenu'
+import { useMappedState } from 'redux-react-hook'
 
-interface IProps {
-  isServer: string
-}
+export default () => {
+  let startPos = 0
 
-class AboutPage extends Component<IProps> {
-  static getInitialProps() {
-    const isServer = typeof window === 'undefined'
-    return { isServer };
+  const wrappRef = useRef<HTMLDivElement>(null)
+
+  const [isOpenInfo, _isOpenInfo] = useState(false)
+
+  const closeInfo = () => {
+    _isOpenInfo(false)
+    if (wrappRef && wrappRef.current) {
+      wrappRef.current.scrollTo({ top: 0 })
+    }
   }
 
-  render() {
-    return (
-      <main>
-        <Header />
-        <section>
-          <p>
-            This is another page of the SSR example, you accessed it{' '}
-            <strong>{this.props.isServer ? 'server' : 'client'} side</strong>.
-          </p>
-          <p>
-            You can reload to see how the page change.
-          </p>
-          <Link href="/">
-            <a>Go to Home</a>
-          </Link>
-        </section>
-      </main>
-    );
+  const judgeScroll = () => {
+    if (wrappRef && wrappRef.current) {
+      const currentPos = wrappRef.current.scrollTop
+      currentPos > startPos ?
+        _isOpenInfo(true)
+        :
+        _isOpenInfo(false)
+      startPos = currentPos
+    }
   }
-}
 
-export default AboutPage;
+  const selectedMenuMapState = useCallback(
+    (state: IAboutMenuState) => state.aboutMenu.selected,
+    [],
+  )
+
+  const selectedMenu = useMappedState(selectedMenuMapState)
+
+  useEffect(() => {
+    if (wrappRef && wrappRef.current) {
+      wrappRef.current.addEventListener('scroll', () => {
+        judgeScroll()
+      })
+    }
+
+    return () => {
+      if (wrappRef && wrappRef.current) {
+        wrappRef.current.removeEventListener('scroll', () => {
+          judgeScroll()
+        })
+      }
+    }
+  }, [])
+
+  return (
+    <main>
+      <Styled.Entire ref={wrappRef}>
+        <Styled.TopWrapper
+          itemScope={isOpenInfo}
+        >
+          <Styled.Name>
+            <SlideInType content="Yutaro" baseDelay={300} />
+          </Styled.Name>
+          <Styled.Name>
+            <SlideInType content="Yoshikawa" baseDelay={300} />
+          </Styled.Name>
+        </Styled.TopWrapper>
+        <Styled.MyInfoWrapper
+          in={isOpenInfo}
+          timeout={400}
+        >
+          <Styled.Closer
+            onClick={closeInfo}
+          >
+            閉じる
+          </Styled.Closer>
+          <Styled.SelfIntroWrapper
+            in={selectedMenu === 'intro' ? true : false}
+            timeout={400}
+          >
+            <Styled.SelfIntro>
+              私は「ワクワクは原動力だ」というテーマのもと日々ITを勉強しています。<br />
+              誰かが何か行動を起こすとき、それにはそこにワクワクするものドキドキするものがあるからではないでしょうか。<br />
+              私が作る作品は、人にそう感じてもらえるものを生み出したいと考えています。
+            </Styled.SelfIntro>
+            </Styled.SelfIntroWrapper>
+            <Styled.MySkillsWrapper
+              in={selectedMenu === 'skills' ? true : false}
+              timeout={400}
+            >
+              <Styled.MySkills>
+                hoge
+              </Styled.MySkills>
+            </Styled.MySkillsWrapper>
+          <Styled.AboutMenuWrapper>
+            <AboutMenu />
+          </Styled.AboutMenuWrapper>
+        </Styled.MyInfoWrapper>
+      </Styled.Entire>
+    </main>
+  );
+}
