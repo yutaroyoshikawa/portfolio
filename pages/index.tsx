@@ -11,6 +11,7 @@ function Index() {
           <Link href="/about">
             <a>Go to About Me</a>
           </Link>
+          {/* <Works /> */}
         </section>
       </Styled.Entire>
     </main>
