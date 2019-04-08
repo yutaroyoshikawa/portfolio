@@ -13,6 +13,7 @@
       true,
       "spaces",
       2
-    ]
+    ],
+    "no-implicit-dependencies": false
   }
 }
