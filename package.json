@@ -39,7 +39,8 @@
     "three-renderer-css3d": "^1.0.0",
     "typescript-fsa": "^3.0.0-beta-2",
     "typescript-fsa-reducers": "^1.2.0",
-    "typescript-fsa-redux-saga": "^2.0.0-beta.1"
+    "typescript-fsa-redux-saga": "^2.0.0-beta.1",
+    "validator": "^10.11.0"
   },
   "devDependencies": {
     "@types/aframe": "^0.8.2",
@@ -56,6 +57,7 @@
     "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^4.1.12",
     "@types/three": "^0.93.30",
+    "@types/validator": "^10.11.0",
     "@zeit/next-typescript": "^1.1.1",
     "dotenv": "^7.0.0",
     "tslint": "^5.14.0",

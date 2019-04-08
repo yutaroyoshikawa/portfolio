@@ -39,43 +39,77 @@ ${{
 
 export const FormWrapper = styled.section`
 ${{
+  border: 'solid 2px #FFF',
+}}
+animation: ${scaleIn} 700ms cubic-bezier(1,0,.35,1.2) 300ms 1 forwards;
+@media screen and (min-width: 1024px){
+${{
   width: '500px',
   height: '500px',
   borderRadius: '60px',
-  border: 'solid 2px #FFF',
   padding: '20px',
   transform: 'translate(-30px, -30px)',
 }}
-animation: ${scaleIn} 700ms cubic-bezier(1,0,.35,1.2) 300ms 1 forwards;
+}
+@media screen and (max-width: 480px){
+${{
+  width: '280px',
+  height: '280px',
+  borderRadius: '50px',
+  padding: '20px',
+  transform: 'translate(-30px, -10px)',
+}}
+}
 `
 
 export const FormTitle = styled.h1`
 ${{
   color: '#FFF',
-  fontSize: '90px',
   display: 'inline-block',
   padding: '10px',
   overflowY: 'hidden',
   background: 'rgb(138, 164, 205)',
-  transform: 'translate(-65px, -70px)',
   fontFamily: 'Raleway, sans-serif',
+}}
+@media screen and (min-width: 1024px){
+${{
+  fontSize: '90px',
+  transform: 'translate(-65px, -70px)',
   letterSpacing: '10px',
 }}
+}
+@media screen and (max-width: 480px){
+${{
+  fontSize: '40px',
+  transform: 'translate(-35px, -50px)',
+  letterSpacing: '5px',
+}}
+}
 `
 
 export const Form = styled.form`
 ${{
   width: '100%',
-  height: '420px',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'flex-start',
   flexDirection: 'column',
   flexWrap: 'wrap',
   opacity: 0,
-  transform: 'translate(60px, 0px)',
 }}
 animation: ${fadeIn} 800ms ease 1200ms 1 forwards;
+@media screen and (min-width: 1024px){
+${{
+  height: '420px',
+  transform: 'translate(60px, 0px)',
+}}
+}
+@media screen and (max-width: 480px){
+${{
+  height: '270px',
+  transform: 'translate(30px, -30px)',
+}}
+}
 `
 
 export const InputWrapper = styled.div`
@@ -86,14 +120,22 @@ ${{
   flexDirection: 'column',
   flexWrap: 'wrap',
   width: '100%',
+}}
+@media screen and (min-width: 1024px){
+${{
   height: '280px',
 }}
+}
+@media screen and (max-width: 480px){
+${{
+  height: '190px',
+}}
+}
 `
 
 const input = css`
 ${{
   width: '100%',
-  padding: '10px 20px',
   color: '#555',
   fontSize: '20px',
   borderRadius: '20px',
@@ -107,6 +149,16 @@ ${{
   boxShadow: '0 0 30px 2px rgba(0,0,0,0.2)',
   border: 'solid 2px rgba(255, 255, 255, 1)',
   background: 'rgba(255, 255, 255, 0.8)',
+}}
+}
+@media screen and (min-width: 1024px){
+${{
+  padding: '10px 20px',
+}}
+}
+@media screen and (max-width: 480px){
+${{
+  padding: '5px 10px',
 }}
 }
 `
@@ -123,8 +175,17 @@ export const ContactContent = styled.textarea`
 ${input}
 ${{
   resize: 'none',
+}}
+@media screen and (min-width: 1024px){
+${{
   height: '110px',
 }}
+}
+@media screen and (max-width: 480px){
+${{
+  height: '70px',
+}}
+}
 `
 
 export const SenderWrapper = styled.div`
@@ -137,8 +198,6 @@ ${{
 
 export const Sender = styled.button`
 ${{
-width: '80px',
-height: '80px',
 background: 'rgba(253, 172, 167, 1)',
 borderRadius: '50%',
 border: 'solid 2px rgba(255, 255, 255, 0)',
@@ -161,4 +220,21 @@ boxShadow: '0 0 30px 2px rgba(0,0,0,0.2)',
   cursor: 'not-allowed',
 }}}
 
+&:focus {${{
+  background: 'rgba(253, 162, 157, 1)',
+  boxShadow: '0 0 40px 2px rgba(0,0,0,0.4)',
+}}}
+
+@media screen and (min-width: 1024px){
+${{
+  width: '80px',
+  height: '80px',
+}}
+}
+@media screen and (max-width: 480px){
+${{
+  width: '60px',
+  height: '60px',
+}}
+}
 `

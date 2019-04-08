@@ -56,6 +56,11 @@ export default reducerWithInitialState(initialReduceContactState)
   .case(actions.successSubmit, (state: IContact): IContact => ({
     ...state,
     isLoading: false,
+    form: {
+      title: '',
+      email: '',
+      content: '',
+    }
   }))
   .case(actions.faildSubmit, (state: IContact, payload): IContact => ({
     ...state,
