@@ -7,6 +7,7 @@ import MenuOutPuts from './menuOutPuts'
 import WorksTitle from './worksTitle'
 import Tag from './tag'
 import Skill from './skill'
+import Aleart from './aleart'
 
 export {
   Menu,
@@ -18,4 +19,5 @@ export {
   WorksTitle,
   Tag,
   Skill,
+  Aleart,
 }

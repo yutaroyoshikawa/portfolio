@@ -1,12 +1,14 @@
 import * as Styled from '../src/styles/contact'
 import { ChangeEvent, FormEvent, useCallback } from 'react'
 import { useDispatch, useMappedState } from 'redux-react-hook'
-import { SlideInType } from '../src/components'
+import { SlideInType, Aleart } from '../src/components'
 import * as actions from '../src/actions/contact'
 import { IContactState } from '../src/reducers/contact'
 import { isEmail } from 'validator'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { showAleart } from '../src/actions/aleart'
 
 export default () => {
   const titleMapState = useCallback(
@@ -45,6 +47,7 @@ export default () => {
           }
       })
       await dispatch(actions.successSubmit())
+      await dispatch(showAleart())
     } catch (e) {
       await dispatch(actions.faildSubmit(e))
     }
@@ -63,6 +66,7 @@ export default () => {
     {
       (submitContact, {loading, error}) => (
         <Styled.Entire>
+          <Aleart />
           <Styled.FormWrapper>
             <Styled.FormTitle>
               <SlideInType content="contact" baseDelay={300} />
@@ -95,19 +99,12 @@ export default () => {
                 />
               </Styled.InputWrapper>
               <Styled.SenderWrapper>
-                {
-                  loading ?
-                    <Styled.LoadingSender>
-                      submit
-                    </Styled.LoadingSender>
-                    :
-                    <Styled.Sender
-                      type="submit"
-                      disabled={title && isEmail(email) && content ? false : true}
-                    >
-                      submit
-                    </Styled.Sender>
-                }
+                <Styled.Sender
+                  type="submit"
+                  disabled={!loading && title && isEmail(email) && content ? false : true}
+                >
+                  <Styled.SenderIcon icon={faPaperPlane} />
+                </Styled.Sender>
               </Styled.SenderWrapper>
             </Styled.Form>
           </Styled.FormWrapper>

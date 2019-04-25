@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const Entire = styled.main`
 ${{
@@ -215,6 +216,7 @@ boxShadow: '0 0 30px 2px rgba(0,0,0,0.2)',
 &:hover {${{
   background: 'rgba(253, 162, 157, 1)',
   boxShadow: '0 0 40px 2px rgba(0,0,0,0.4)',
+  border: 'solid 2px rgba(255, 255, 255, 1)',
 }}}
 
 &:disabled {${{
@@ -225,6 +227,7 @@ boxShadow: '0 0 30px 2px rgba(0,0,0,0.2)',
 &:focus {${{
   background: 'rgba(253, 162, 157, 1)',
   boxShadow: '0 0 40px 2px rgba(0,0,0,0.4)',
+  border: 'solid 2px rgba(255, 255, 255, 1)',
 }}}
 
 @media screen and (min-width: 1024px){
@@ -241,51 +244,10 @@ ${{
 }
 `
 
-export const LoadingSender = styled.div`
+export const SenderIcon = styled(FontAwesomeIcon)`
 ${{
-  background: 'rgba(253, 162, 157, 1)',
-  borderRadius: '50%',
-  border: 'solid 2px rgba(255, 255, 255, 0)',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   color: '#FFF',
-  fontSize: '20px',
-  transition: 'all 500ms ease',
-  boxShadow: '0 0 40px 2px rgba(0,0,0,0.4)',
+  fontSize: '30px',
+  margin: '0 0 -2px -5px'
 }}
-@media screen and (min-width: 1024px){
-${{
-  width: '70px',
-  height: '70px',
-  margin: '10px 10px 0 0',
-}}
-  &::after {
-    content: '';
-  ${{
-    width: '80px',
-    height: '80px',
-    background: '#000',
-    position: 'absolute',
-    borderRadius: '50%',
-  }}
-  }
-}
-@media screen and (max-width: 480px){
-${{
-  width: '50px',
-  height: '50px',
-  margin: '10px 10px 0 0',
-}}
-  &::after {
-    content: '';
-  ${{
-    width: '60px',
-    height: '60px',
-    background: '#000',
-    position: 'absolute',
-    borderRadius: '50%',
-  }}
-  }
-}
 `
