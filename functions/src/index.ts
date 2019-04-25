@@ -1,52 +1,25 @@
 import * as functions from 'firebase-functions'
-import * as admin from 'firebase-admin'
-import * as serviceAccount from './service-account.json'
-import { ApolloServer, gql } from 'apollo-server-cloud-functions'
+// import mailer from './mail'
+import server from './apollo'
+import webhook from './slack'
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount as any)
-})
+export const apollo = functions.https.onRequest(server)
 
-const typeDefs = gql`
-type Query {
-  workses: [Works]
-}
-type Works {
-  name: String!
-  thumb: String!
-}
-`
+// export const mail = functions.https.onRequest((req, res) => {
+//   mailer(
+//     req.body.token,
+//     {
+//       to: functions.config().mail.address,
+//       subject: `${req.body.title}[${req.body.email}]`,
+//       text: req.body.content,
+//     },
+//     res
+//   )
+// })
 
-interface Works {
-  name: string
-  thumb: string
-}
-
-const resolvers = {
-  Query: {
-    async workses() {
-      const workses = await admin
-        .firestore()
-        .collection('works')
-        .get()
-      return workses.docs.map(works => works.data()) as Works[]
-    }
+export const slack = functions.firestore.document('contacts/{contactID}').onCreate(snapshot => {
+  const data = snapshot.data()
+  if(data) {
+    webhook(data.title, data.email, data.content)
   }
-}
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: ({ req, res }) => ({
-    headers: req.headers,
-    req,
-    res,
-  }),
-  
 })
-
-export const apollo = functions.https.onRequest(server.createHandler({
-  cors: {
-    origin: false
-  },
-}))
