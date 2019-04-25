@@ -13,7 +13,7 @@ export default () => {
   const isOpen = useMappedState(mapState)
 
   const dispatch = useDispatch()
-  const hundleClick = () =>  dispatch(isOpen ? closeMenu() : openMenu())
+  const hundleClick = () => dispatch(isOpen ? closeMenu() : openMenu())
 
   return (
     <Styled.Entire onClick={hundleClick}>
