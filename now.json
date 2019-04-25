@@ -20,5 +20,8 @@
             "FIREBASE_PROJECT_ID": "",
             "FIREBASE_STORAGE_BUCKET": "@firebase_storage_bucket"
         }
-    }
+    },
+    "routes": [
+        { "src": "/works/(?<title>[^/]+)$", "dest": "/works?title=$title" }
+    ]
 }
