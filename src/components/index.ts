@@ -5,6 +5,8 @@ import SlideInType from './slideInType'
 import AboutMenu from './aboutMenu'
 import MenuOutPuts from './menuOutPuts'
 import WorksTitle from './worksTitle'
+import Tag from './tag'
+import Skill from './skill'
 
 export {
   Menu,
@@ -14,4 +16,6 @@ export {
   AboutMenu,
   MenuOutPuts,
   WorksTitle,
+  Tag,
+  Skill,
 }
