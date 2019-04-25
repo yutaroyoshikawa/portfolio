@@ -9,6 +9,10 @@
     "target": "es2015",
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "src/"
+    ]
   },
   "compileOnSave": true,
   "include": [

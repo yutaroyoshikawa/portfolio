@@ -1,3 +1,6 @@
 declare module 'styled-transition-group'
 declare module 'three-renderer-css3d'
 declare module 'three/examples/js/renderers/CSS2DRenderer'
+declare module 'react-recaptcha-v3'
+declare module 'react-p5-wrapper'
+declare module 'react-d3-library'
