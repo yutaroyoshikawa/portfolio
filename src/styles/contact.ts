@@ -40,6 +40,7 @@ ${{
 export const FormWrapper = styled.section`
 ${{
   border: 'solid 2px #FFF',
+  transform: 'scale(0.1)',
 }}
 animation: ${scaleIn} 700ms cubic-bezier(1,0,.35,1.2) 300ms 1 forwards;
 @media screen and (min-width: 1024px){
@@ -55,7 +56,7 @@ ${{
 ${{
   width: '280px',
   height: '280px',
-  borderRadius: '50px',
+  borderRadius: '38px',
   padding: '20px',
   transform: 'translate(-30px, -10px)',
 }}
@@ -137,7 +138,6 @@ const input = css`
 ${{
   width: '100%',
   color: '#555',
-  fontSize: '20px',
   borderRadius: '20px',
   border: 'solid 2px rgba(255, 255, 255, 0)',
   background: 'rgba(255, 255, 255, 0.5)',
@@ -153,11 +153,13 @@ ${{
 }
 @media screen and (min-width: 1024px){
 ${{
+  fontSize: '20px',
   padding: '10px 20px',
 }}
 }
 @media screen and (max-width: 480px){
 ${{
+  fontSize: '15px',
   padding: '5px 10px',
 }}
 }
@@ -236,5 +238,54 @@ ${{
   width: '60px',
   height: '60px',
 }}
+}
+`
+
+export const LoadingSender = styled.div`
+${{
+  background: 'rgba(253, 162, 157, 1)',
+  borderRadius: '50%',
+  border: 'solid 2px rgba(255, 255, 255, 0)',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: '#FFF',
+  fontSize: '20px',
+  transition: 'all 500ms ease',
+  boxShadow: '0 0 40px 2px rgba(0,0,0,0.4)',
+}}
+@media screen and (min-width: 1024px){
+${{
+  width: '70px',
+  height: '70px',
+  margin: '10px 10px 0 0',
+}}
+  &::after {
+    content: '';
+  ${{
+    width: '80px',
+    height: '80px',
+    background: '#000',
+    position: 'absolute',
+    borderRadius: '50%',
+  }}
+  }
+}
+@media screen and (max-width: 480px){
+${{
+  width: '50px',
+  height: '50px',
+  margin: '10px 10px 0 0',
+}}
+  &::after {
+    content: '';
+  ${{
+    width: '60px',
+    height: '60px',
+    background: '#000',
+    position: 'absolute',
+    borderRadius: '50%',
+  }}
+  }
 }
 `

@@ -5,6 +5,8 @@ import { SlideInType } from '../src/components'
 import * as actions from '../src/actions/contact'
 import { IContactState } from '../src/reducers/contact'
 import { isEmail } from 'validator'
+import gql from 'graphql-tag'
+import { Mutation } from 'react-apollo'
 
 export default () => {
   const titleMapState = useCallback(
@@ -29,54 +31,89 @@ export default () => {
   const dispatch = useDispatch()
   const setTitle = (e: ChangeEvent<HTMLInputElement>) => dispatch(actions.setTitle(e.target.value))
   const setEmail = (e: ChangeEvent<HTMLInputElement>) => dispatch(actions.setEmail(e.target.value))
-  const setContent = (e: ChangeEvent) => dispatch(actions.setContent(e.target.value))
+  const setContent = (e: ChangeEvent<HTMLTextAreaElement>) => dispatch(actions.setContent(e.target.value))
 
-  const hundleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const hundleSubmit = async (e: FormEvent<HTMLFormElement>, submitContact: any) => {
     e.preventDefault()
-    dispatch(actions.requestSubmit())
+    try {
+      await submitContact({
+        variables: 
+          {
+            title,
+            email,
+            content,
+          }
+      })
+      await dispatch(actions.successSubmit())
+    } catch (e) {
+      await dispatch(actions.faildSubmit(e))
+    }
   }
 
+  const SUBMIT_CONTACT = gql`
+    mutation contact($title: String!, $email: String!, $content: String!) {
+      contact(title: $title, email: $email, content: $content) {
+        posted_at
+      }
+    }
+  `
+
   return (
-    <Styled.Entire>
-      <Styled.FormWrapper>
-        <Styled.FormTitle>
-          <SlideInType content="contact" baseDelay={300} />
-        </Styled.FormTitle>
-        <Styled.Form
-          onSubmit={hundleSubmit}
-        >
-          <Styled.InputWrapper>
-            <Styled.ContactTitle
-              type="text"
-              placeholder="title"
-              value={title}
-              onChange={setTitle}
-              required={true}
-            />
-            <Styled.ContactFrom
-              type="email"
-              placeholder="email"
-              value={email}
-              onChange={setEmail}
-              required={true}
-            />
-            <Styled.ContactContent
-              placeholder="content"
-              value={content}
-              onChange={setContent}
-              required={true}
-            />
-          </Styled.InputWrapper>
-          <Styled.SenderWrapper>
-            <Styled.Sender
-              type="submit"
-              disabled={title && isEmail(email) && content ? false : true}
+    <Mutation mutation={SUBMIT_CONTACT}>
+    {
+      (submitContact, {loading, error}) => (
+        <Styled.Entire>
+          <Styled.FormWrapper>
+            <Styled.FormTitle>
+              <SlideInType content="contact" baseDelay={300} />
+            </Styled.FormTitle>
+            <Styled.Form
+              onSubmit={e => {
+                hundleSubmit(e, submitContact)
+              }}
             >
-              submit
-            </Styled.Sender>
-          </Styled.SenderWrapper>
-        </Styled.Form>
-      </Styled.FormWrapper>
-    </Styled.Entire>
+              <Styled.InputWrapper>
+                <Styled.ContactTitle
+                  type="text"
+                  placeholder="title"
+                  value={title}
+                  onChange={setTitle}
+                  required={true}
+                />
+                <Styled.ContactFrom
+                  type="email"
+                  placeholder="email"
+                  value={email}
+                  onChange={setEmail}
+                  required={true}
+                />
+                <Styled.ContactContent
+                  placeholder="content"
+                  value={content}
+                  onChange={setContent}
+                  required={true}
+                />
+              </Styled.InputWrapper>
+              <Styled.SenderWrapper>
+                {
+                  loading ?
+                    <Styled.LoadingSender>
+                      submit
+                    </Styled.LoadingSender>
+                    :
+                    <Styled.Sender
+                      type="submit"
+                      disabled={title && isEmail(email) && content ? false : true}
+                    >
+                      submit
+                    </Styled.Sender>
+                }
+              </Styled.SenderWrapper>
+            </Styled.Form>
+          </Styled.FormWrapper>
+        </Styled.Entire>
+      )
+    }
+    </Mutation>
   )
 }

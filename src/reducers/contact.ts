@@ -1,7 +1,7 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import * as actions from '../actions/contact'
 
-interface IForm {
+export interface IForm {
   title: string
   email: string
   content: string
@@ -57,6 +57,7 @@ export default reducerWithInitialState(initialReduceContactState)
     ...state,
     isLoading: false,
     form: {
+      ...state.form,
       title: '',
       email: '',
       content: '',
