@@ -1,12 +1,42 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const fadeIn = keyframes`
+0% {
+  opacity: 0;
+},
+100% {
+  opacity: 1;
+}
+`
+
+export const BackGround = styled.div`
+${{
+  width: '100vw',
+  height: '100vh',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  zIndex: 78,
+  backgroundSize: 'cover',
+  transition: 'all 400ms ease',
+}}
+  animation: ${fadeIn} 600ms ease;
+  ${props => props.itemProp ? `background: url('${props.itemProp}') no-repeat center;` : null}
+  filter: ${props => props.itemScope ? 'blur(10px)' : 'blur(0px)'};
+`
 
 export const Entire = styled.main`
 ${{
   width: '100vw',
   height: '100vh',
   overflowY: 'scroll',
-  background: 'rgba(253, 172, 167, 1)',
+  background: 'linear-gradient(rgba(253, 172, 167, 0.6), rgba(253, 172, 167, 1))',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  zIndex: 79,
 }}
+animation: ${fadeIn} 600ms ease;
 -webkit-overflow-scrolling: touch;
 `
 
@@ -60,5 +90,20 @@ ${{
   fontSize: '30px',
   letterSpacing: '3px',
   textIndent: 'calc(1em + 3px)',
+}}
+`
+
+export const Tag = styled.div`
+${{
+  padding: '0 10px'
+}}
+`
+
+export const TagWrap = styled.div`
+${{
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  marginBottom: '50px', 
 }}
 `

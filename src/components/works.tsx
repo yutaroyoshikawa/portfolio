@@ -1,33 +1,21 @@
-import React, { useEffect, useRef } from 'react'
-import { useDispatch } from 'redux-react-hook'
-import * as actions from '../actions/works'
-import * as THREE from 'three'
-// import * as CSS2D from 'three/examples/js/renderers/CSS2DRenderer'
+import * as Styled from '../styles/components/works'
+import React from 'react'
+import Link from 'next/link'
 
-export default () => {
-  const dispatch = useDispatch()
+interface IProps {
+  title: string
+  thumb: string
+}
 
-  useEffect(() => {
-    dispatch(actions.requestGetWorks())
-    if (glroot && glroot.current) {
-      glroot.current.appendChild(Renderer())
-    }
-  }, [])
-
-  const glroot = useRef<HTMLDivElement>(null)
-
-  const Renderer = () => {
-    const renderer = new THREE.WebGLRenderer()
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(window.devicePixelRatio)
-    return renderer.domElement
-  }
-
+export default (props: IProps) => {
   return (
-    <div >
-      <div ref={glroot}>
-        <div>hoge</div>
-      </div>
-    </div>
+    <Link
+      as={`/works/${props.title}`}
+      href={{ pathname: '/works', query: { title: props.title } }}
+    >
+      <Styled.Entire>
+        <Styled.Thumb src={props.thumb} alt={props.title} />
+      </Styled.Entire>
+    </Link>
   )
 }
