@@ -3,6 +3,7 @@ import top from './top'
 import menu from './menu'
 import aboutMenu from './aboutMenu'
 import contact from './contact'
+import about from './about'
 
 export default combineReducers(
   {
@@ -10,5 +11,6 @@ export default combineReducers(
     menu,
     aboutMenu,
     contact,
+    about,
   }
 )
