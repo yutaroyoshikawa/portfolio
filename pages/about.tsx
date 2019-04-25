@@ -1,11 +1,25 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import * as Styled from '../src/styles/about'
-import { SlideInType, AboutMenu } from '../src/components'
+import { SlideInType, AboutMenu, Skill } from '../src/components'
 import { IAboutMenuState } from '../src/reducers/aboutMenu'
-import { useMappedState } from 'redux-react-hook'
+import { useDispatch, useMappedState } from 'redux-react-hook'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
+import { setSkills } from '../src/actions/about'
+import * as Loading from '../src/styles/index'
 
 export default () => {
+  const dispatch = useDispatch()
   let startPos = 0
+
+  const GET_SKILLS = gql`
+  {
+    getSkills {
+      name
+      val
+    }
+  }
+  `
 
   const wrappRef = useRef<HTMLDivElement>(null)
 
@@ -52,6 +66,27 @@ export default () => {
     }
   }, [])
 
+  const renderLoading = () => (
+    <Loading.MainContent>
+      <Loading.LoadingBar>
+        <Loading.LoadingFirstBar />
+        <Loading.LoadingSecondBar />
+        <Loading.LoadingThirdBar />
+      </Loading.LoadingBar>
+    </Loading.MainContent>
+  )
+
+  const renderError = () => (
+    <div>Error</div>
+  )
+
+  const renderMain = (data: any) => {
+    dispatch(setSkills(data))
+    return (
+      <Skill />
+    )
+  }
+
   return (
     <main>
       <Styled.Entire ref={wrappRef}>
@@ -89,7 +124,13 @@ export default () => {
               timeout={400}
             >
               <Styled.MySkills>
-                hoge
+                <Query query={GET_SKILLS}>
+                  {({loading, error, data}) => {
+                    if (loading) return renderLoading()
+                    if (error) return renderError()
+                    return renderMain(data.getSkills)
+                  }}
+                </Query>
               </Styled.MySkills>
             </Styled.MySkillsWrapper>
           <Styled.AboutMenuWrapper>
