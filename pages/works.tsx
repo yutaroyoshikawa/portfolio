@@ -17,6 +17,9 @@ interface IData {
   title: string
   text: string
   thumb: string
+  url: string
+  images: string[]
+  tags: string[]
 }
 
 const Works = (props: IQuery) => {
@@ -29,6 +32,8 @@ const Works = (props: IQuery) => {
         text
         thumb
         tags
+        url
+        images
       }
     }
   `
@@ -59,6 +64,26 @@ const Works = (props: IQuery) => {
             <Styled.Paragraph>
               {data.text}
             </Styled.Paragraph>
+            {
+              data.images ?
+                data.images.map((data, i) => (
+                  <figure>
+                    <Styled.Images src={data} alt={`image${i}`} />
+                  </figure>
+                ))
+                :
+                null
+            }
+            {
+              data.url ?
+                <Styled.UrlWrapper>
+                  <Styled.Url href={data.url} target="_blank">
+                    Go to page
+                  </Styled.Url>
+                </Styled.UrlWrapper>
+                :
+                null
+            }
           </Styled.MainContent>
         </Styled.MainContentWrapper>
       </div>

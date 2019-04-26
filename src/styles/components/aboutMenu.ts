@@ -28,7 +28,6 @@ export const Intro = styled.button`
 ${button}
 ${{
   borderRadius: '20px 0px 0px 20px',
-  borderRight: 'solid 1px #555',
 }}
 ${props => props.itemProp === 'intro' ? 'background: #000' : null}
 ${props => props.itemProp === 'intro' ? 'color: #FFF' : null}

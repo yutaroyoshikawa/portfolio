@@ -87,7 +87,8 @@ ${{
 export const Paragraph = styled.p`
 ${{
   color: '#FFF',
-  fontSize: '30px',
+  fontSize: '25px',
+  lineHeight: '50px',
   letterSpacing: '3px',
   textIndent: 'calc(1em + 3px)',
 }}
@@ -105,5 +106,40 @@ ${{
   display: 'flex',
   justifyContent: 'center',
   marginBottom: '50px', 
+}}
+`
+
+export const UrlWrapper = styled.div`
+${{
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+}}
+`
+
+export const Url = styled.a`
+${{
+  color: '#FFF',
+  display: 'inline-block',
+  borderRadius: '50px',
+  border: 'solid #FFF 2px',
+  textAlign: 'center',
+  fontSize: '20px',
+  padding: '10px 50px',
+  margin: '40px 0',
+  transition: 'all 600ms ease'
+}}
+&:hover {
+${{
+  color: '#000',
+  background: '#FFF',
+}}
+}
+`
+
+export const Images = styled.img`
+${{
+  width: '100%',
+  margin: '100px 0',
 }}
 `

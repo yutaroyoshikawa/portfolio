@@ -19,6 +19,43 @@ ${{
 }}
 `
 
+export const WorksSection = styled.section`
+${{
+  width: '100vw',
+  height: '100vh',
+  overflowY: 'scroll',
+}}
+`
+
+export const WorksWrapper = styled.div`
+${{
+  margin: '100px auto 0 auto',
+}}
+@media screen and (min-width: 1024px){
+${{
+  width: '1020px',
+}}
+}
+@media screen and (max-width: 480px){
+${{
+  width: '95vw',
+}}
+}
+`
+
+export const Works = styled.div`
+@media screen and (min-width: 1024px){
+${{
+  margin: '50px auto'
+}}
+}
+@media screen and (max-width: 480px){
+${{
+  margin: '5vw auto'
+}}
+}
+`
+
 export const Loading = transition.section.attrs({
   unmountOnExit: true,
   timeout: 300

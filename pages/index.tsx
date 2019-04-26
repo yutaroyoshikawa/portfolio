@@ -53,9 +53,17 @@ export default () => {
     {
       !isLoading ?
         <Styled.MainContent>
-          {
-            data.workses.map(data => <Works title={data.title} thumb={data.thumb} />)
-          }
+          <Styled.WorksSection>
+            <Styled.WorksWrapper>
+            {
+              data.workses.map(data => (
+                <Styled.Works>
+                  <Works title={data.title} thumb={data.thumb} />
+                </Styled.Works>
+              ))
+            }
+            </Styled.WorksWrapper>
+          </Styled.WorksSection>
         </Styled.MainContent>
         :
         null
