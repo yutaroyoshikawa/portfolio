@@ -116,7 +116,7 @@ export default () => {
             <Styled.SelfIntro>
               私は「ワクワクは原動力だ」というテーマのもと日々ITを勉強しています。<br />
               誰かが何か行動を起こすとき、それにはそこにワクワクするものドキドキするものがあるからではないでしょうか。<br />
-              私が作る作品は、人にそう感じてもらえるものを生み出したいと考えています。
+              私は、人にそう感じてもらえるものを生み出したいと考えています。
             </Styled.SelfIntro>
             </Styled.SelfIntroWrapper>
             <Styled.MySkillsWrapper
