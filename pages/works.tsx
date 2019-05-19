@@ -4,6 +4,7 @@ import * as Loading from '../src/styles/index'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { WorksTitle, Tag } from '../src/components'
+import Head from 'next/head'
 
 interface IQuery {
   title: string
@@ -45,6 +46,9 @@ const Works = (props: IQuery) => {
     _backGround(data.thumb)
     return (
       <div>
+        <Head>
+          <title>吉川勇太郎のポートフォリオ｜{data.title}</title>
+        </Head>
         <Styled.TopSection
           itemScope={isEffect}
         >

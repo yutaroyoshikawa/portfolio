@@ -9,6 +9,7 @@ import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { showAleart } from '../src/actions/aleart'
+import Head from 'next/head'
 
 export default () => {
   const titleMapState = useCallback(
@@ -66,6 +67,9 @@ export default () => {
     {
       (submitContact, {loading, error}) => (
         <Styled.Entire>
+          <Head>
+            <title>吉川勇太郎のポートフォリオ｜Contact</title>
+          </Head>
           <Aleart />
           <Styled.FormWrapper>
             <Styled.FormTitle>

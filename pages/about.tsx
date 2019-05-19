@@ -7,6 +7,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { setSkills } from '../src/actions/about'
 import * as Loading from '../src/styles/index'
+import Head from 'next/head'
 
 export default () => {
   const dispatch = useDispatch()
@@ -89,6 +90,9 @@ export default () => {
 
   return (
     <main>
+      <Head>
+        <title>吉川勇太郎のポートフォリオ｜About</title>
+      </Head>
       <Styled.Entire ref={wrappRef}>
         <Styled.TopWrapper
           itemScope={isOpenInfo}

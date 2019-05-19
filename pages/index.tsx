@@ -2,6 +2,7 @@ import * as Styled from '../src/styles/index'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { Works } from '../src/components'
+import Head from 'next/head'
 
 export default () => {
   const GET_WORKS = gql`
@@ -73,6 +74,9 @@ export default () => {
 
   return (
     <Styled.Entire>
+      <Head>
+        <title>吉川勇太郎のポートフォリオ</title>
+      </Head>
       <Query query={GET_WORKS}>
         {({loading, error, data}) => {
           if (loading) return renderLoading()
