@@ -52,17 +52,27 @@ ${{
   left: 0,
   zIndex: 80,
   transition: 'all 400ms ease',
+  overflow: 'scroll'
 }}
 filter: ${props => props.itemScope ? 'blur(10px)' : 'blur(0px)'}; 
 `
 
 export const WorksTitleWrapper = styled.div`
 ${{
-  width: '50vw',
-  marginBottom: '100px',
   display: 'flex',
   justifyContent: 'center',
 }}
+@media screen and (min-width: 1024px){
+${{
+  width: '100vw',
+  marginBottom: '100px',
+}}
+}
+@media screen and (max-width: 480px){
+${{
+  marginBottom: '100px',
+}}
+}
 `
 
 export const MainContentWrapper = styled.section`
@@ -77,21 +87,40 @@ ${{
 `
 
 export const MainContent = styled.div`
+@media screen and (min-width: 1024px){
 ${{
   width: '1020px',
-  minHeight: '100vh',
+  height: '100vh',
   padding: '100px',
 }}
+}
+@media screen and (max-width: 480px){
+${{
+  width: '90vw',
+  height: '100vh',
+}}
+}
 `
 
 export const Paragraph = styled.p`
 ${{
   color: '#FFF',
+  textIndent: 'calc(1em + 3px)',
+}}
+@media screen and (min-width: 1024px){
+${{
   fontSize: '25px',
   lineHeight: '50px',
   letterSpacing: '3px',
-  textIndent: 'calc(1em + 3px)',
 }}
+}
+@media screen and (max-width: 480px){
+${{
+  fontSize: '17px',
+  lineHeight: '30px',
+  letterSpacing: '3px',
+}}
+}
 `
 
 export const Tag = styled.div`
@@ -102,11 +131,16 @@ ${{
 
 export const TagWrap = styled.div`
 ${{
-  width: '100%',
+  width: '100vw',
   display: 'flex',
-  justifyContent: 'center',
   marginBottom: '50px', 
+  // overflow: 'scroll'
 }}
+@media screen and (min-width: 1024px){
+${{
+  justifyContent: 'center',
+}}
+}
 `
 
 export const UrlWrapper = styled.div`
