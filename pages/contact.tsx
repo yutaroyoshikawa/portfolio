@@ -1,5 +1,5 @@
 import * as Styled from '../src/styles/contact'
-import { ChangeEvent, FormEvent, useCallback } from 'react'
+import { ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useMappedState } from 'redux-react-hook'
 import { SlideInType, Aleart } from '../src/components'
 import * as actions from '../src/actions/contact'
@@ -27,9 +27,13 @@ export default () => {
     []
   )
 
+  const ref = useRef<HTMLMainElement>(null)
+
   const title = useMappedState(titleMapState)
   const email = useMappedState(emailMapState)
   const content = useMappedState(contentMapState)
+
+  const [xindex, _xindex] = useState(0)
 
   const dispatch = useDispatch()
   const setTitle = (e: ChangeEvent<HTMLInputElement>) => dispatch(actions.setTitle(e.target.value))
@@ -54,6 +58,28 @@ export default () => {
     }
   }
 
+  const checkcursor = (e: any) => {
+    _xindex(e.pageX)
+  }
+
+  const checkDevicemotion = (e: any) => {
+    _xindex(e.accelerationIncludingGravity.x)
+  }
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.addEventListener('mousemove', checkcursor)
+      ref.current.addEventListener('devicemotion', checkcursor)
+    }
+
+    return () => {
+      if (ref.current) {
+        ref.current.removeEventListener('mousemove', checkcursor)
+        ref.current.removeEventListener('devicemotion', checkcursor)
+      }
+    }
+  }, [])
+
   const SUBMIT_CONTACT = gql`
     mutation contact($title: String!, $email: String!, $content: String!) {
       contact(title: $title, email: $email, content: $content) {
@@ -65,13 +91,15 @@ export default () => {
   return (
     <Mutation mutation={SUBMIT_CONTACT}>
     {
-      (submitContact, {loading, error}) => (
-        <Styled.Entire>
+      (submitContact, { loading }) => (
+        <Styled.Entire ref={ref}>
           <Head>
             <title>吉川勇太郎のポートフォリオ｜Contact</title>
           </Head>
           <Aleart />
-          <Styled.FormWrapper>
+          <Styled.FormWrapper
+            itemProp={xindex.toString()}
+          >
             <Styled.FormTitle>
               <SlideInType content="contact" baseDelay={300} />
             </Styled.FormTitle>
@@ -79,6 +107,7 @@ export default () => {
               onSubmit={e => {
                 hundleSubmit(e, submitContact)
               }}
+              itemProp={xindex}
             >
               <Styled.InputWrapper>
                 <Styled.ContactTitle
