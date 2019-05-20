@@ -42,7 +42,7 @@ export const FormWrapper = styled.section`
 ${{
   border: 'solid 2px #FFF',
 }}
-transform: translate(${props => props.itemProp * 0.05}px, -30px) scale(1);
+transform: translate(${props => Number(props.itemProp) * 0.05}px, -30px) scale(1);
 transition: all 1000ms linear;
 animation: ${scaleIn} 700ms cubic-bezier(1,0,.35,1.2) 300ms 1;
 @media screen and (min-width: 1024px){
@@ -99,7 +99,7 @@ ${{
   flexWrap: 'wrap',
   opacity: 0,
 }}
-transform: translate(${props => props.itemProp * 0.06}px, -30px) scale(1);
+transform: translate(${props => Number(props.itemProp) * 0.06}px, -30px) scale(1);
 transition: all 300ms linear;
 animation: ${fadeIn} 800ms ease 1200ms 1 forwards;
 @media screen and (min-width: 1024px){

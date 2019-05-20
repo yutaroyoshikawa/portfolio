@@ -69,13 +69,13 @@ export default () => {
   useEffect(() => {
     if (ref.current) {
       ref.current.addEventListener('mousemove', checkcursor)
-      ref.current.addEventListener('devicemotion', checkcursor)
+      ref.current.addEventListener('devicemotion', checkDevicemotion)
     }
 
     return () => {
       if (ref.current) {
         ref.current.removeEventListener('mousemove', checkcursor)
-        ref.current.removeEventListener('devicemotion', checkcursor)
+        ref.current.removeEventListener('devicemotion', checkDevicemotion)
       }
     }
   }, [])
